@@ -1,7 +1,7 @@
 from openai import OpenAI
 
 # 替换成你自己的DeepSeek API Key
-DEEPSEEK_API_KEY = "sk-16bf633f946f4e56ac7487035b76af53"
+DEEPSEEK_API_KEY = "your api key"
 
 client = OpenAI(
     api_key=DEEPSEEK_API_KEY,
