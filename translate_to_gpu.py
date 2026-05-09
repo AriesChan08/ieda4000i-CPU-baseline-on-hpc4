@@ -1,6 +1,5 @@
 from openai import OpenAI
 
-# 替换成你自己的DeepSeek API Key
 DEEPSEEK_API_KEY = "your api key"
 
 client = OpenAI(
@@ -9,11 +8,10 @@ client = OpenAI(
 )
 
 def translate_algorithm(algorithm_name):
-    # 读取本地的CPU代码
+
     with open(f"{algorithm_name}.py", "r") as f:
         cpu_code = f.read()
     
-    # 针对A30 GPU优化的硬件感知提示词
     prompt = f"""
     请将下面这个Python实现的ACO CVRP算法转换为**高度优化的NVIDIA A30 GPU CUDA C++代码**。
 
@@ -44,7 +42,7 @@ def translate_algorithm(algorithm_name):
         max_tokens=8192
     )
     
-    # 提取CUDA代码（自动去掉代码块标记）
+    # 提取CUDA代码
     gpu_code = response.choices[0].message.content
     if "```cuda" in gpu_code:
         gpu_code = gpu_code.split("```cuda")[1].split("```")[0]
